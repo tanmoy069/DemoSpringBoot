@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Rokomari demo page</title>
@@ -7,30 +7,43 @@
 
     <style>
         .card{
-            margin: 150px auto;
+            margin: 60px auto;
             padding: 40px;
             background-color: #03A9F4;
             border-radius: 10px;
         }
 
-        h1{
+        h3 , h1{
             font-family: "Baloo Da", sans-serif;
             color: aliceblue;
+        }
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
     </style>
 </head>
 <body>
+
+<div th:if="${param.error}" class="alert alert-error">
+    Invalid username and password.
+</div>
+<div th:if="${param.logout}" class="alert alert-success">
+    You have been logged out.
+</div>
 <div class="card" style="width: 30%;">
-    <h1>Login Page</h1>
-    <form action="#" th:action="@{/}" th:object="${}" method="post">
+    <h1>রকমারি ডট কম</h1>
+    <h3>Login Page</h3>
+    <form name="f" th:action="@{/login}"  method="post">
         <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+        <label >Email address</label>
+        <input type="text" class="form-control"  id="username" name="username" placeholder="Enter Username">
         </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-        </div>
+<div class="form-group">
+    <label >Password</label>
+    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+</div>
 
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

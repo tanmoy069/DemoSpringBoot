@@ -16,9 +16,14 @@ public class HomeController {
 	
     @RequestMapping("/")
     public String home(){
-        return "welcome";
+        return "UserList";
     }
-    
+
+    @GetMapping("/login")
+    public String login() {
+        return "index";
+    }
+
     @GetMapping("/userlist")
     public String getUserList(Model model){
     	model.addAttribute("userObj", userRepo.findAll());
