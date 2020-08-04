@@ -49,6 +49,20 @@ class DemoProjectApplicationTests {
 		
 	}
 	
-	
+	@Test
+	void updateUser() {
+		try {
+			User user = userRepo.findUserByUserId(1);
+			System.out.println(user.toString());
+			user.setAge(26);
+			userRepo.save(user);
+			System.out.println("Successfully user Updated");
+			User user1 = userRepo.findUserByUserId(1);
+			System.out.println(user1.toString());
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+	}
 
 }
