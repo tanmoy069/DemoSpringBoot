@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">>
 <head>
     <meta charset="UTF-8">
     <title>Rokomari demo page</title>
@@ -22,7 +22,7 @@
 <body>
 <div class="card" style="width: 30%;">
     <h1>Login Page</h1>
-    <form>
+    <form action="#" th:action="@{/}" th:object="${}" method="post">
         <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
