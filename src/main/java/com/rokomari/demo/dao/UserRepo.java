@@ -9,5 +9,6 @@ import com.rokomari.demo.model.User;
 public interface UserRepo extends JpaRepository<User, Integer>{
 	
 	User findUserByUserId(int id);
+	User findByUsername(String username);
 
 }

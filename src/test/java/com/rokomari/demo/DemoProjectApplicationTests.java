@@ -32,7 +32,7 @@ class DemoProjectApplicationTests {
 	void addUser() {
 		try {
 			User user = new User();
-			user.setUserName("tanmoy069");
+			user.setUsername("tanmoy069");
 			user.setFirstName("Tanmoy");
 			user.setLastName("Tushar");
 			user.setAddress("Mymensingh, Dhaka");
