@@ -1,6 +1,7 @@
 package com.rokomari.demo.security;
 
 import com.rokomari.demo.model.User;
+import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -8,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.Collections;
 
+@Data
 @SuppressWarnings("serial")
 public class UserPrincipal implements UserDetails {
 

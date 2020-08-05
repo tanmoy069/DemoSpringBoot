@@ -7,22 +7,22 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="user_details", uniqueConstraints=@UniqueConstraint(columnNames={"user_name","email"}))
+@Getter
+@Setter
+//@Table(name="user_details", uniqueConstraints=@UniqueConstraint(columnNames={"user_name","email"}))
 public class User {
 	
 	@Id
     @GeneratedValue
 	private int userId;
 	
-	@Column(name="user_name", length = 100)
+//	@Column(name="user_name", length = 100)
 	private String username;
 	
 	private String firstName;
@@ -37,7 +37,7 @@ public class User {
 
 	private int age;
 
-	@Column(name="email", length = 100)
+//	@Column(name="email", length = 100)
 	private String email;
 
 	private int phone;

@@ -24,7 +24,8 @@ public class HomeController {
     }
 
     @GetMapping("/login")
-    public String login() {
+    public String login(Model model) {
+        model.addAttribute("qrimage", "img2.png");
         return "index";
     }
 
