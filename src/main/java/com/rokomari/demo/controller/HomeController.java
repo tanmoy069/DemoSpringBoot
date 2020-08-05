@@ -20,7 +20,7 @@ public class HomeController {
 	
     @RequestMapping("/")
     public String home(){
-        return "UserList";
+        return "Home";
     }
 
     @GetMapping("/login")

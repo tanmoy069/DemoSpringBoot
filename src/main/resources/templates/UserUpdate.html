@@ -16,7 +16,7 @@
       <a class="navbar-brand" href="#">Demo Web App</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="/">Home</a></li>
+      <li><a href="/">Home</a></li>
       <li><a href="/userlist">User List</a></li>
     </ul>
   </div>
@@ -33,7 +33,7 @@
           <h4>Last Name: <br><input type="text" name="lastName" th:value="${user.getLastName()}"></h4>
           <h4>Address: <br><input type="text" name="address" th:value="${user.getAddress()}"></h4>
           <h4>Profession: <br><input type="text" name="profession" th:value="${user.getProfession()}"></h4>
-          <h4>Age: <br><input type="number" name="age" th:value="${user.getAge()}"></h4>
+          <h4>Age: <br><input type="number" name="age" th:value="${user.getAge()}" max="120"></h4>
         </div>
       </div>
       <div class="col-sm-4">
@@ -41,7 +41,7 @@
           <h4>Email: <br><input type="text" name="email" th:value="${user.getEmail()}"></h4>
           <h4>Username: <br><input type="text" name="username" th:value="${user.getUsername()}" disabled></h4>
           <h4>User Id: <br><input type="number" name="userId" th:value="${user.getUserId()}" disabled></h4>
-          <h4>Phone: <br><input type="number" name="phone" th:value="${user.getPhone()}"></h4>
+          <h4>Phone: <br><input type="number" name="phone" th:value="${user.getPhone()}" max="9999999999"></h4>
           <h4>Marital Status: <br><input type="text" name="maritalStatus" th:value="${user.getMaritalStatus()}"></h4>
         </div>
       </div>
