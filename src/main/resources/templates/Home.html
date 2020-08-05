@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
 <head>
   <title>Home</title>
   <meta charset="utf-8">
@@ -13,16 +13,18 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Demo Web App</a>
+      <a class="navbar-brand" href="/">Demo Web App</a>
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="/">Home</a></li>
       <li><a href="/userlist">User List</a></li>      
     </ul>
     <div style="padding: 8px">
-		<form id="submitbtn" th:action="@{/logout}" method="post" sec:authorize="isAuthenticated()">	
-		   <a class="btn" type="submit">Logout</a>
+		<form id="submitbtn" >
+		   <a href="/logout" class="btn" type="submit">Logout</a>
 		</form>
+
+
 	</div>
   </div>
 </nav>

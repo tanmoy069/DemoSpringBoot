@@ -29,6 +29,7 @@ public class HomeController {
         return "index";
     }
 
+
     @GetMapping("/userlist")
     public String getUserList(Model model){
     	model.addAttribute("userObj", userRepo.findAll());
