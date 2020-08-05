@@ -41,6 +41,7 @@ class DemoProjectApplicationTests {
 			user.setMaritalStatus("Single");
 			user.setProfession("Student");
 			user.setPhone(1672125148);
+			user.setPassword("admin1234");
 			userRepo.save(user);
 			System.out.println("Successfully user added");
 		} catch (Exception e) {
