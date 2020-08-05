@@ -9,7 +9,7 @@
         .card{
             margin: 60px auto;
             padding: 40px;
-            background-color: #03A9F4;
+            background-image: linear-gradient(to bottom right, #26C6DA, #29B6F6, #29B6F6);
             border-radius: 10px;
         }
 
@@ -26,9 +26,7 @@
 </head>
 <body>
 
-<!--<div>-->
-<!--    <img src="img2.png"/>-->
-<!--</div>-->
+
 
 <div th:if="${param.error}" class="alert alert-error">
     Invalid username and password.
@@ -52,6 +50,7 @@
 
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+
 </div>
 </body>
 </html>
