@@ -25,7 +25,8 @@
 <div class="container-fluid" th:each="user : ${userDetails}">
   <div class="row" style="padding-left: 50px">
     <h2>User Details</h2>
-    <div class="col-sm-6">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-4">
       <div class="container" style="padding: 50px">
         <h4>First Name: <span th:text="${user.getFirstName()}"></span></h4>
         <h4>Last Name: <span th:text="${user.getLastName()}"></span></h4>
@@ -34,7 +35,7 @@
         <h4>Age: <span th:text="${user.getAge()}"></span></h4>
       </div>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-4">
       <div class="container" style="padding: 50px">
         <h4>Email: <span th:text="${user.getEmail()}"></span></h4>
         <h4>Username: <span th:text="${user.getUsername()}"></span></h4>
@@ -42,6 +43,13 @@
         <h4>Phone: <span th:text="${user.getPhone()}"></span></h4>
         <h4>Marital Status: <span th:text="${user.getMaritalStatus()}"></span></h4>
       </div>
+    </div>
+    <div class="col-sm-2"></div>
+  </div>
+  <div class="row">
+    <div class="col-sm-8"></div>
+    <div class="col-sm-4">
+      <a class="btn btn-success" th:href="@{/userupdate/(id=${user.getUserId()})}">Edit User</a>
     </div>
   </div>
 </div>

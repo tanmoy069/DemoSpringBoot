@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <title>User Update</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Demo Web App</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="/">Home</a></li>
+      <li><a href="/userlist">User List</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container-fluid" th:each="user : ${userDetails}">
+  <form th:action="@{/userupdate/(id=${user.getUserId()})}" th:object="${updateUserForm}" method="post">
+    <div class="row" style="padding-left: 50px">
+      <h2>Update User Details</h2>
+      <div class="col-sm-2"></div>
+      <div class="col-sm-4">
+        <div class="container" style="padding: 50px">
+          <h4>First Name: <br><input type="text" name="firstName" th:value="${user.getFirstName()}"></h4>
+          <h4>Last Name: <br><input type="text" name="lastName" th:value="${user.getLastName()}"></h4>
+          <h4>Address: <br><input type="text" name="address" th:value="${user.getAddress()}"></h4>
+          <h4>Profession: <br><input type="text" name="profession" th:value="${user.getProfession()}"></h4>
+          <h4>Age: <br><input type="number" name="age" th:value="${user.getAge()}"></h4>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="container" style="padding: 50px">
+          <h4>Email: <br><input type="text" name="email" th:value="${user.getEmail()}"></h4>
+          <h4>Username: <br><input type="text" name="username" th:value="${user.getUsername()}" disabled></h4>
+          <h4>User Id: <br><input type="number" name="userId" th:value="${user.getUserId()}" disabled></h4>
+          <h4>Phone: <br><input type="number" name="phone" th:value="${user.getPhone()}"></h4>
+          <h4>Marital Status: <br><input type="text" name="maritalStatus" th:value="${user.getMaritalStatus()}"></h4>
+        </div>
+      </div>
+      <div class="col-sm-2"></div>    
+    </div>
+    <div class="row">
+      <div class="col-sm-8">
+	    <div th:if="${invalidCredentials}" class="alert warning">
+			<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> <strong>Warning!</strong>
+						Failed to update user details. Please try again!
+		</div>
+		<div th:if="${validCredentials}" class="alert warning">
+			<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> <strong>Successfully!</strong>
+						Updated user details!
+		</div>
+	  </div>
+      <div class="col-sm-4">
+        <button class="btn btn-success" type="submit">Update</button>
+      </div>
+    </div>
+  </form>
+</div>
+</body>
+
+</html>
