@@ -16,7 +16,7 @@
       <a class="navbar-brand" href="#">Demo Web App</a>
     </div>
     <ul class="nav navbar-nav">
-      <li><a href="/home">Home</a></li>
+      <li><a href="/">Home</a></li>
       <li class="active"><a href="/userlist">User List</a></li>
     </ul>
   </div>
@@ -40,7 +40,7 @@
               <td><span th:text="${user.getLastName()}"></span></td>
               <td><span th:text="${user.getEmail()}"></span></td>
               <td><span th:text="${user.getPhone()}"></span></td>
-              <td><span th:text="${user.getUsername()}"></span></td>
+              <td><a th:href="@{/userview/(id=${user.getUserId()})}"><span th:text="${user.getUsername()}"></span></a></td>
         </tr>
     </tbody>
   </table>

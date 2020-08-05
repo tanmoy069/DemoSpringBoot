@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.rokomari.demo.dao.UserRepo;
 
@@ -29,4 +30,11 @@ public class HomeController {
     	model.addAttribute("userObj", userRepo.findAll());
         return "UserList";
     }
+    
+    @GetMapping("/userview")
+    public String getUser(Model model, @RequestParam(value="id") int userId){
+    	model.addAttribute("userDetails", userRepo.findUserByUserId(userId));
+        return "UserView";
+    }
+    
 }
