@@ -19,6 +19,11 @@
       <li><a href="/">Home</a></li>
       <li><a href="/userlist">User List</a></li>
     </ul>
+    <div style="padding: 8px">
+		<form id="submitbtn" >
+		   <a href="/logout" class="btn" type="submit">Logout</a>
+		</form>
+	</div>
   </div>
 </nav>
 
@@ -27,7 +32,7 @@
     <h2>User Details</h2>
     <div class="col-sm-2"></div>
     <div class="col-sm-4">
-      <div class="container" style="padding: 50px">
+      <div class="container-fluid" style="padding: 50px">
         <h4>First Name: <span th:text="${user.getFirstName()}"></span></h4>
         <h4>Last Name: <span th:text="${user.getLastName()}"></span></h4>
         <h4>Address: <span th:text="${user.getAddress()}"></span></h4>
@@ -36,7 +41,7 @@
       </div>
     </div>
     <div class="col-sm-4">
-      <div class="container" style="padding: 50px">
+      <div class="container-fluid" style="padding: 50px">
         <h4>Email: <span th:text="${user.getEmail()}"></span></h4>
         <h4>Username: <span th:text="${user.getUsername()}"></span></h4>
         <h4>User Id: <span th:text="${user.getUserId()}"></span></h4>
