@@ -1,10 +1,11 @@
 package com.rokomari.demo.security;
 
-import com.rokomari.demo.model.User;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.rokomari.demo.domain.User;
 
 import java.util.Collection;
 import java.util.Collections;

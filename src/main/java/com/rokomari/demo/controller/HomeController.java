@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.rokomari.demo.dao.UserRepo;
-import com.rokomari.demo.model.User;
+import com.rokomari.demo.domain.User;
+import com.rokomari.demo.repository.UserRepository;
 
 @Controller
 public class HomeController {
 
 	@Autowired
-	private UserRepo userRepo;
+	private UserRepository userRepo;
 	
     @RequestMapping("/")
     public String home(){
