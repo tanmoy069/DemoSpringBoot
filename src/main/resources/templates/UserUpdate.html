@@ -17,7 +17,7 @@
     </div>
     <ul class="nav navbar-nav">
       <li><a href="/">Home</a></li>
-      <li><a href="/userlist">User List</a></li>
+      <li><a href="/user/list">User List</a></li>
     </ul>
     <div style="padding: 8px">
 		<form id="submitbtn" >
@@ -28,7 +28,7 @@
 </nav>
 
 <div class="container-fluid" th:each="user : ${userDetails}">
-  <form th:action="@{/userupdate/(id=${user.getUserId()})}" th:object="${updateUserForm}" method="post">
+  <form th:action="@{/user/update/(id=${user.getUserId()})}" th:object="${updateUserForm}" method="post">
     <div class="row" style="padding-left: 50px">
       <h2>Update User Details</h2>
       <div class="col-sm-2"></div>
