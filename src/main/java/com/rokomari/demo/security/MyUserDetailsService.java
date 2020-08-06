@@ -1,7 +1,8 @@
 package com.rokomari.demo.security;
 
-import com.rokomari.demo.dao.UserRepo;
-import com.rokomari.demo.model.User;
+import com.rokomari.demo.domain.User;
+import com.rokomari.demo.repository.UserRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,7 +14,7 @@ public class MyUserDetailsService implements UserDetailsService {
 
 
     @Autowired
-    private UserRepo repo;
+    private UserRepository repo;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
