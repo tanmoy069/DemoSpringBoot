@@ -17,10 +17,9 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        String[] staticResources  =  {"/images/**"};
+        String[] staticResources = {"/images/**"};
 
         http
                 .authorizeRequests()
@@ -38,7 +37,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutUrl("/logout")
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/login")
-                ;
+        ;
 
 
     }
