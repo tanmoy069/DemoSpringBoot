@@ -1,13 +1,12 @@
 package com.rokomari.demo.security;
 
-import java.util.Collection;
-import java.util.Collections;
-
+import com.rokomari.demo.domain.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.rokomari.demo.domain.User;
+import java.util.Collection;
+import java.util.Collections;
 
 @SuppressWarnings("serial")
 public class UserPrincipal implements UserDetails {
@@ -31,7 +30,7 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public String getUsername() {
-        System.out.println("UserPrincipal - >" +user.getUsername());
+        System.out.println("UserPrincipal - >" + user.getUsername());
         return user.getUsername();
     }
 
