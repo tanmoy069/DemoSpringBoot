@@ -1,16 +1,14 @@
 package com.rokomari.demo.security;
 
-import lombok.Data;
+import java.util.Collection;
+import java.util.Collections;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.rokomari.demo.domain.User;
 
-import java.util.Collection;
-import java.util.Collections;
-
-@Data
 @SuppressWarnings("serial")
 public class UserPrincipal implements UserDetails {
 

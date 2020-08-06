@@ -1,25 +1,17 @@
 package com.rokomari.demo.domain;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+//import javax.persistence.Table;
+//import javax.persistence.UniqueConstraint;
 
-import lombok.*;
-
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
-@Getter
-@Setter
-//@Table(name="user_details", uniqueConstraints=@UniqueConstraint(columnNames={"user_name","email"}))
+//@Table(name="user_details", uniqueConstraints=@UniqueConstraint(columnNames={"username","email"}))
 public class User {
 
 	@Id
-    @GeneratedValue
+	@GeneratedValue
 	private int userId;
 
 //	@Column(name="user_name", length = 100)
@@ -131,4 +123,32 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public User() {
+		super();
+	}
+
+	public User(int userId, String username, String firstName, String lastName, String address, String profession,
+			String maritalStatus, int age, String email, int phone, String password) {
+		super();
+		this.userId = userId;
+		this.username = username;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.address = address;
+		this.profession = profession;
+		this.maritalStatus = maritalStatus;
+		this.age = age;
+		this.email = email;
+		this.phone = phone;
+		this.password = password;
+	}
+
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", username=" + username + ", firstName=" + firstName + ", lastName="
+				+ lastName + ", address=" + address + ", profession=" + profession + ", maritalStatus=" + maritalStatus
+				+ ", age=" + age + ", email=" + email + ", phone=" + phone + ", password=" + password + "]";
+	}
+
 }
