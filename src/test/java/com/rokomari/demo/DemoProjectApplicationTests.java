@@ -6,14 +6,14 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.rokomari.demo.dao.UserRepo;
-import com.rokomari.demo.model.User;
+import com.rokomari.demo.repository.UserRepository;
+import com.rokomari.demo.domain.User;
 
 @SpringBootTest
 class DemoProjectApplicationTests {
 
 	@Autowired
-	private UserRepo userRepo;
+	private UserRepository userRepo;
 	
 	@Test
 	void contextLoads() {
