@@ -17,7 +17,7 @@
     </div>
     <ul class="nav navbar-nav">
       <li><a href="/">Home</a></li>
-      <li><a href="/userlist">User List</a></li>
+      <li><a href="/user/list">User List</a></li>
     </ul>
     <div style="padding: 8px">
 		<form id="submitbtn" >
@@ -54,7 +54,7 @@
   <div class="row">
     <div class="col-sm-8"></div>
     <div class="col-sm-4">
-      <a class="btn btn-success" th:href="@{/userupdate/(id=${user.getUserId()})}">Edit User</a>
+      <a class="btn btn-success" th:href="@{/user/update/(id=${user.getUserId()})}">Edit User</a>
     </div>
   </div>
 </div>
