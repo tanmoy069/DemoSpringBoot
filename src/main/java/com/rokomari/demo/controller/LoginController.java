@@ -13,7 +13,7 @@ import com.rokomari.demo.domain.User;
 import com.rokomari.demo.repository.UserRepository;
 
 @Controller
-public class HomeController {
+public class LoginController {
 
 	@Autowired
 	private UserRepository userRepo;
