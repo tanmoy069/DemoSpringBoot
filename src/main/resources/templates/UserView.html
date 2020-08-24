@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>User View</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Demo Web App</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/user/list/?page=0">User List</a></li>
+        </ul>
+        <div style="padding: 8px">
+            <form id="submitbtn">
+                <a id="lg" href="/logout" class="btn" type="submit">Logout</a>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid" th:each="user : ${userDetails}">
+    <div class="row" style="padding-left: 50px">
+        <h2>User Details</h2>
+        <div class="col-sm-2"></div>
+        <div class="col-sm-4">
+            <div class="container-fluid" style="padding: 50px">
+                <h4>First Name: <span th:text="${user.getFirstName()}"></span></h4>
+                <h4>Last Name: <span th:text="${user.getLastName()}"></span></h4>
+                <h4>Address: <span th:text="${user.getAddress()}"></span></h4>
+                <h4>Profession: <span th:text="${user.getProfession()}"></span></h4>
+                <h4>Age: <span th:text="${user.getAge()}"></span></h4>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="container-fluid" style="padding: 50px">
+                <h4>Email: <span th:text="${user.getEmail()}"></span></h4>
+                <h4>Username: <span th:text="${user.getUsername()}"></span></h4>
+                <h4>User Id: <span th:text="${user.getUserId()}"></span></h4>
+                <h4>Phone: <span th:text="${user.getPhone()}"></span></h4>
+                <h4>Marital Status: <span th:text="${user.getMaritalStatus()}"></span></h4>
+            </div>
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8"></div>
+        <div class="col-sm-4">
+            <a class="btn btn-success" th:href="@{/user/update/(id=${user.getUserId()})}">Edit User</a>
+        </div>
+    </div>
+</div>
+<style>
+
+
+    img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #lg {
+        background-color: #D32F2F;
+        color: whitesmoke;
+    }
+
+    #lg:hover {
+        color: #D32F2F;
+        background-color: whitesmoke;
+    }
+</style>
+</html>
