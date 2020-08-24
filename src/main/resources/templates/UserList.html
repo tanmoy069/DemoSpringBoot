@@ -48,10 +48,22 @@
             <td><a th:href="@{/user/view/(id=${user.getUserId()})}"><span th:text="${user.getUsername()}"></span></a>
             </td>
         </tr>
+        <tr th:if="${userObj.size()==0}" align="center">
+        	<td colspan=5>No user available</td>
+        </tr>
         </tbody>
     </table>
+    <div>
+      <div class="panel-footer">
+      	<h6 th:if="${userObj.size()>0}" th:text="'Showing ' + ${showingFrom} + ' to ' + ${showingTo} + ' of ' + ${totalElementObj}"></h6>
+      	<ul class="pagination pull-right">
+	      <li th:if="${hasPrevObj}"><a th:href="@{/user/list/(page=${numberObj-1})}">Prev</a></li>
+	      <li th:each="page : ${pageListObj}"><a th:href="@{/user/list/(page=${page - 1})}" th:text="${page}"></a></li>
+	      <li th:if="${hasNextObj}"><a th:href="@{/user/list/(page=${numberObj+1})}">Next</a></li>
+	    </ul>
+      </div>	  
+	</div>
 </div>
-
 </body>
 <style>
 
