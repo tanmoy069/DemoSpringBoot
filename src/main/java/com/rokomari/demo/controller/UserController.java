@@ -27,15 +27,8 @@ public class UserController {
 		this.mainService = mainService;
 	}
 
-//	@GetMapping("/list")
-//	public String getUserList(Model model) {
-//		model.addAttribute("userObj", mainService.findAll());
-//		return "UserList";
-//	}
-
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String employeesPageable(Model model, @PageableDefault(value = 5) Pageable pageable,
-			@RequestParam(value = "page") int page) {
+	public String employeesPageable(Model model, @PageableDefault(value = 5) Pageable pageable,	@RequestParam(value = "page") int page) {
 		Page<User> pages = mainService.findAllByPage(pageable);
 		model.addAttribute("showingFrom", (page * pages.getSize()) + 1);
 		if (pages.getSize() * (page + 1) > pages.getTotalElements()) model.addAttribute("showingTo", pages.getTotalElements());
@@ -48,18 +41,21 @@ public class UserController {
 		model.addAttribute("totalElementObj", pages.getTotalElements());
 		model.addAttribute("sizeObj", pages.getSize());
 		model.addAttribute("pageListObj", mainService.getPageList(pages.getTotalPages()));
+		model.addAttribute("currentUser", mainService.getCurrentUser());
 		return "UserList";
 	}
 
 	@GetMapping("/view")
 	public String getUser(Model model, @RequestParam(value = "id") int userId) {
 		model.addAttribute("userDetails", mainService.findUserByUserId(userId));
+		model.addAttribute("currentUser", mainService.getCurrentUser());
 		return "UserView";
 	}
 
 	@GetMapping("/update")
 	public String userUpdate(Model model, @RequestParam(value = "id") int userId) {
 		model.addAttribute("userDetails", mainService.findUserByUserId(userId));
+		model.addAttribute("currentUser", mainService.getCurrentUser());
 		return "UserUpdate";
 	}
 
@@ -67,6 +63,7 @@ public class UserController {
 	public String updateUser(@ModelAttribute(name = "updateUserForm") User user, Model model,
 			@RequestParam(value = "id") int userId) {
 		model.addAttribute("userDetails", mainService.findUserByUserId(userId));
+		model.addAttribute("currentUser", mainService.getCurrentUser());
 		try {
 			user.setUserId(userId);
 			mainService.updateUser(user);
