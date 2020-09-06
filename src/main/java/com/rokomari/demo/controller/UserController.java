@@ -52,6 +52,12 @@ public class UserController {
 		return "UserView";
 	}
 
+	@GetMapping("/add")
+	public String addUser(Model model) {
+		model.addAttribute("currentUser", mainService.getCurrentUser());
+		return "AddUser";
+	}
+
 	@GetMapping("/update")
 	public String userUpdate(Model model, @RequestParam(value = "id") int userId) {
 		model.addAttribute("userDetails", mainService.findUserByUserId(userId));
