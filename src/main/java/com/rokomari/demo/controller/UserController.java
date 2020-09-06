@@ -53,8 +53,15 @@ public class UserController {
 	}
 
 	@GetMapping("/add")
-	public String addUser(Model model) {
+	public String getUserAdd(Model model) {
 		model.addAttribute("currentUser", mainService.getCurrentUser());
+		return "AddUser";
+	}
+
+	@PostMapping("/add")
+	public String setUserAdd(Model model, @ModelAttribute("userAddForm") User user) {
+		model.addAttribute("currentUser", mainService.getCurrentUser());
+		mainService.saveUser(user);
 		return "AddUser";
 	}
 

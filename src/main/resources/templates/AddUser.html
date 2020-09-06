@@ -49,41 +49,41 @@
 
 <div class="container-fluid" style="padding: 20px">
     <h1>New User Add</h1>
-    <form>
+    <form th:action="@{/user/add}" th:object="${userAddForm}" method="post">
       <div class="row">
         <div class="col"></div>
         <div class="col">
           <div class="form-group">
             <label for="firstName">First Name</label>
-            <input type="text" class="form-control" id="firsNameId" placeholder="Enter your first name" required>
+            <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Enter your first name" required>
           </div>
           <div class="form-group">
             <label for="lastName">Last Name</label>
-            <input type="text" class="form-control" id="lastNameId" placeholder="Enter your last name" required>
+            <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Enter your last name" required>
           </div>
           <div class="form-group">
             <label for="userName">User Name</label>
-            <input type="text" class="form-control" id="userNameId" placeholder="Enter your user name" required>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Enter your user name" required>
           </div>
           <div class="form-group">
             <label for="address">Address</label>
-            <input type="text" class="form-control" id="addressId" placeholder="Enter your address">
+            <input type="text" class="form-control" id="address" name="address" placeholder="Enter your address">
           </div>
           <div class="form-group">
             <label for="phone">Phone</label>
-            <input type="number" class="form-control" id="phoneId" placeholder="Enter your phone number">
+            <input type="number" class="form-control" id="phone" name="phone" placeholder="Enter your phone number">
           </div>
           <div class="form-group">
             <label for="age">Age</label>
-            <input type="number" class="form-control" id="ageId" placeholder="Enter your age">
+            <input type="number" class="form-control" id="age" name="age" placeholder="Enter your age">
           </div>
           <div class="form-group">
             <label for="profession">Profession</label>
-            <input type="text" class="form-control" id="professionId" placeholder="Enter your profession">
+            <input type="text" class="form-control" id="profession" name="profession" placeholder="Enter your profession">
           </div>
           <div class="form-group">
             <label for="maritalStatus">Marital Status</label>
-            <select class="custom-select" id="maritalStatusId">
+            <select class="custom-select" id="maritalStatus" name="maritalStatus">
               <option selected>Choose...</option>
               <option value="Single">Single</option>
               <option value="Married">Married</option>
@@ -91,13 +91,13 @@
           </select>
           </div>
           <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required>
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email" required>
             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
           </div>
           <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" minlength="8" placeholder="Password" required>
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" minlength="8" placeholder="Password" required>
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
         </div>
