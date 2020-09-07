@@ -1,34 +1,54 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
 <head>
-    <title>User List</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <title>Home</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
 
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">Demo Web App</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">User Interface</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/user/add">Add User</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/user/list/?page=0">User List</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="${currentUser.firstName}">          
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" th:href="@{/user/view/(id=${currentUser.userId})}">Profile</a>
+          <div class="dropdown-divider"></div>
+          <form>
+	          <a class="dropdown-item" href="/logout" type="submit">Logout</a>
+          </form>
         </div>
-        <ul class="nav navbar-nav">
-            <li><a href="/">Home</a></li>
-            <li class="active"><a href="/user/list">User List</a></li>
-        </ul>
-        <div style="padding: 8px">
-            <form id="submitbtn">
-                <a id="lg" href="/logout" class="btn" type="submit">Logout</a>
-            </form>
-        </div>
-    </div>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
 </nav>
 
 <div class="container">
-    <h2>User List</h2>
+    <h2 style="padding:20px">User List</h2>
     <table class="table table-condensed">
         <thead>
         <tr>
@@ -53,34 +73,26 @@
         </tr>
         </tbody>
     </table>
-    <div>
-      <div class="panel-footer">
-      	<h6 th:if="${userObj.size()>0}" th:text="'Showing ' + ${showingFrom} + ' to ' + ${showingTo} + ' of ' + ${totalElementObj}"></h6>
-      	<ul class="pagination pull-right">
-	      <li th:if="${hasPrevObj}"><a th:href="@{/user/list/(page=${numberObj-1})}">Prev</a></li>
-	      <li th:each="page : ${pageListObj}"><a th:href="@{/user/list/(page=${page - 1})}" th:text="${page}"></a></li>
-	      <li th:if="${hasNextObj}"><a th:href="@{/user/list/(page=${numberObj+1})}">Next</a></li>
-	    </ul>
-      </div>	  
-	</div>
+	<h6 th:if="${userObj.size()>0}" th:text="'Showing ' + ${showingFrom} + ' to ' + ${showingTo} + ' of ' + ${totalElementObj}"></h6>
+	<nav aria-label="...">
+	  <ul class="pagination">
+	    <li th:if="${!hasPrevObj}" class="page-item disabled">
+	      <a class="page-link" href="#" tabindex="-1">Previous</a>
+	    </li>
+	    <li th:if="${hasPrevObj}" class="page-item">
+	    	<a class="page-link" th:href="@{/user/list/(page=${numberObj-1})}">Previous</a>
+	    </li>
+	    <li class="page-item" th:each="page : ${pageListObj}">
+	    	<a class="page-link" th:href="@{/user/list/(page=${page - 1})}" th:text="${page}"></a>
+	    </li>
+	    <li class="page-item" th:if="${hasNextObj}">
+	    	<a class="page-link" th:href="@{/user/list/(page=${numberObj+1})}">Next</a>
+	    </li>
+	    <li class="page-item disabled" th:if="${!hasNextObj}">
+	      <a class="page-link" href="#">Next</a>
+	    </li>
+	  </ul>
+	</nav>
 </div>
 </body>
-<style>
-
-    img {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    #lg {
-        background-color: #D32F2F;
-        color: whitesmoke;
-    }
-
-    #lg:hover {
-        color: #D32F2F;
-        background-color: whitesmoke;
-    }
-</style>
 </html>

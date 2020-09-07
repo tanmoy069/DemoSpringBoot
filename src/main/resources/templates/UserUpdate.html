@@ -1,39 +1,58 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
 <head>
-    <title>User Update</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <title>Home</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
 
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">Demo Web App</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">User Interface</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/user/add">Add User</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/user/list/?page=0">User List</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="${currentUser.firstName}">          
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" th:href="@{/user/view/(id=${currentUser.userId})}">Profile</a>
+          <div class="dropdown-divider"></div>
+          <form>
+	          <a class="dropdown-item" href="/logout" type="submit">Logout</a>
+          </form>
         </div>
-        <ul class="nav navbar-nav">
-            <li><a href="/">Home</a></li>
-            <li><a href="/user/list/?page=0">User List</a></li>
-        </ul>
-        <div style="padding: 8px">
-            <form id="submitbtn">
-                <a id="lg" href="/logout" class="btn" type="submit">Logout</a>
-            </form>
-        </div>
-    </div>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
 </nav>
 
-<div class="container-fluid" th:each="user : ${userDetails}">
+<div class="container" th:each="user : ${userDetails}">
     <form th:action="@{/user/update/(id=${user.getUserId()})}" th:object="${updateUserForm}" method="post">
-        <div class="row" style="padding-left: 50px">
-            <h2>Update User Details</h2>
-            <div class="col-sm-2"></div>
-            <div class="col-sm-4">
-                <div class="container" style="padding: 50px">
+        <h2 style="padding:20px">Update User Details</h2>
+        <div class="row">
+            <div class="col-sm">
+                <div class="container">
                     <h4>First Name: <br><input type="text" name="firstName" th:value="${user.getFirstName()}"></h4>
                     <h4>Last Name: <br><input type="text" name="lastName" th:value="${user.getLastName()}"></h4>
                     <h4>Address: <br><input type="text" name="address" th:value="${user.getAddress()}"></h4>
@@ -41,8 +60,8 @@
                     <h4>Age: <br><input type="number" name="age" th:value="${user.getAge()}" max="120"></h4>
                 </div>
             </div>
-            <div class="col-sm-4">
-                <div class="container" style="padding: 50px">
+            <div class="col-sm">
+                <div class="container">
                     <h4>Email: <br><input type="text" name="email" th:value="${user.getEmail()}"></h4>
                     <h4>Username: <br><input type="text" name="username" th:value="${user.getUsername()}" disabled></h4>
                     <h4>User Id: <br><input type="number" name="userId" th:value="${user.getUserId()}" disabled></h4>
@@ -52,10 +71,9 @@
                                                    th:value="${user.getMaritalStatus()}"></h4>
                 </div>
             </div>
-            <div class="col-sm-2"></div>
         </div>
         <div class="row">
-            <div class="col-sm-8">
+            <div class="col-sm" style="padding:20px">
                 <div th:if="${invalidCredentials}" class="alert warning">
                     <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> <strong>Warning!</strong>
                     Failed to update user details. Please try again!
@@ -65,30 +83,12 @@
                     Updated user details!
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm"></div>
+            <div class="col-sm">
                 <button class="btn btn-success" type="submit">Update</button>
             </div>
         </div>
     </form>
 </div>
 </body>
-<style>
-
-
-    img {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    #lg {
-        background-color: #D32F2F;
-        color: whitesmoke;
-    }
-
-    #lg:hover {
-        color: #D32F2F;
-        background-color: whitesmoke;
-    }
-</style>
 </html>

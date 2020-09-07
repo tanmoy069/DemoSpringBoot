@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+  <title>User Add</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">User Interface</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/user/add">Add User</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/user/list/?page=0">User List</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="${currentUser.firstName}">          
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" th:href="@{/user/view/(id=${currentUser.userId})}">Profile</a>
+          <div class="dropdown-divider"></div>
+          <form>
+            <a class="dropdown-item" href="/logout" type="submit">Logout</a>
+          </form>
+        </div>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
+<div class="container-fluid" style="padding: 20px">
+    <h1>New User Add</h1>
+    <form th:action="@{/user/add}" th:object="${userAddForm}" method="post">
+      <div class="row">
+        <div class="col"></div>
+        <div class="col">
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Enter your first name" required>
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Enter your last name" required>
+          </div>
+          <div class="form-group">
+            <label for="userName">User Name</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Enter your user name" required>
+          </div>
+          <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text" class="form-control" id="address" name="address" placeholder="Enter your address">
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="number" class="form-control" id="phone" name="phone" placeholder="Enter your phone number">
+          </div>
+          <div class="form-group">
+            <label for="age">Age</label>
+            <input type="number" class="form-control" id="age" name="age" placeholder="Enter your age">
+          </div>
+          <div class="form-group">
+            <label for="profession">Profession</label>
+            <input type="text" class="form-control" id="profession" name="profession" placeholder="Enter your profession">
+          </div>
+          <div class="form-group">
+            <label for="maritalStatus">Marital Status</label>
+            <select class="custom-select" id="maritalStatus" name="maritalStatus">
+              <option selected>Choose...</option>
+              <option value="Single">Single</option>
+              <option value="Married">Married</option>
+              <option value="Divorced">Divorced</option>
+          </select>
+          </div>
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email" required>
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" minlength="8" placeholder="Password" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+        <div class="col"></div>
+      </div>
+    
+  </form>
+</div>
+</body>
+
+<style>
+    span, h1 {
+        text-align: center;
+        font-family: "Baloo Da", sans-serif;
+    }
+</style>
+
+</html>

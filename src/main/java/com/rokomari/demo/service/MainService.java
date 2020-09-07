@@ -7,6 +7,9 @@ import java.util.stream.IntStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.rokomari.demo.domain.User;
@@ -36,6 +39,17 @@ public class MainService {
 
 	public void updateUser(User user) {
 		setUpdateUser(user);
+	}
+	
+	public void saveUser(User user) {
+		BCryptPasswordEncoder bc = new BCryptPasswordEncoder(12);
+		user.setPassword(bc.encode(user.getPassword()));
+		userRepo.save(user);
+	}
+	
+	public User getCurrentUser() {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		return userRepo.findByUsername(auth.getName());
 	}
 
 	private void setUpdateUser(User user) {
